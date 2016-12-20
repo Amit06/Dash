@@ -3,7 +3,7 @@ var app = express();
 app.use(express.static('www'))
 var cors=require('cors');
 var admin = require("firebase-admin");
-var serviceAccount = require("F:/dash/bookapp-146604-firebase-adminsdk-jo6x6-de1b464e86.json");
+var serviceAccount = require("./bookapp-146604-firebase-adminsdk-jo6x6-de1b464e86.json");
 app.use(cors());
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
