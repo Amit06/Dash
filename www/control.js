@@ -2,7 +2,7 @@ mainApp.controller("studentController", function($scope,$window,$http) {
 
   var uids;
   $scope.dates={};
-   var url = "https://desolate-falls-91972.herokuapp.com/users";
+   var url = "https://guptabansal.herokuapp.com/users";
    $http.get(url).success( function(response) {
       $scope.students = response.users;
         uids=Object.keys(response.users);
@@ -18,7 +18,7 @@ mainApp.controller("studentController", function($scope,$window,$http) {
      $window.scrollTo(0, 0);
      $scope.isAsk="Wait.. Getting Info";
      var x=uids[uid];
-    var url = "https://desolate-falls-91972.herokuapp.com/user/"+x;
+    var url = "https://guptabansal.herokuapp.com/user/"+x;
      $http.get(url).success( function(response) {
        var x= response.metadata.lastSignedInAt;
        var y=new Date(x);
