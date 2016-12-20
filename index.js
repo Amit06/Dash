@@ -3,6 +3,7 @@ var app = express();
 app.use(express.static('www'))
 var cors=require('cors');
 var admin = require("firebase-admin");
+app.set('port', (process.env.PORT || 5000));
 var serviceAccount = require("./bookapp-146604-firebase-adminsdk-jo6x6-de1b464e86.json");
 app.use(cors());
 admin.initializeApp({
@@ -47,4 +48,6 @@ app.get('/', function(req, res) {
        res.sendFile('index.html'); // load the single view file (angular will handle the page changes on the front-end)
    });
 
-app.listen(3000);
+app.listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
