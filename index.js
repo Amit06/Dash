@@ -43,7 +43,7 @@ app.get('/module.js', function(req, res){
 });
 app.get('/login/:pwd', function(req, res){
     var pass = req.params.pwd;
-    console.log(pass);
+  
     var rep;
     if(pass==password)
     {

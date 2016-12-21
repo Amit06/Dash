@@ -43,7 +43,7 @@ $scope.logout = function()
   $scope.submit = function()
   {
 
-  
+
     var url="/login/"+$scope.user.pass;
     $scope.user.pass="";
     $http.get(url).success( function(response) {
@@ -92,5 +92,7 @@ $scope.logout = function()
 
 
    }
+  
+
 
 });
