@@ -16,7 +16,7 @@ $scope.init = function(){
      $scope.connected=true;
 
      $scope.dates={};
-      var url = "https://guptabansal.herokuapp.com/users";
+      var url = "/users";
       $http.get(url).success( function(response) {
         $scope.isw8=false;
          $scope.students = response.users;
@@ -78,7 +78,7 @@ $scope.logout = function()
      $window.scrollTo(0, 0);
      $scope.isAsk="Wait.. Getting Info";
      var x=uids[uid];
-    var url = "https://guptabansal.herokuapp.com/user/"+x;
+    var url = "/user/"+x;
      $http.get(url).success( function(response) {
        var x= response.metadata.lastSignedInAt;
        var y=new Date(x);
@@ -92,7 +92,7 @@ $scope.logout = function()
 
 
    }
-  
+
 
 
 });
