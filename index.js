@@ -4,11 +4,13 @@ app.use(express.static('www'))
 var cors=require('cors');
 var admin = require("firebase-admin");
 app.set('port', (process.env.PORT || 5000));
-var serviceAccount = require("./bookapp-146604-firebase-adminsdk-jo6x6-de1b464e86.json");
+var serviceAccount = require("./gupta-bansal-148011-firebase-adminsdk-1aoco-adba688b11.json");
 app.use(cors());
+var admin = require("firebase-admin");
+
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://bookapp-146604.firebaseio.com/"
+  credential: admin.credential.cert("path/to/serviceAccountKey.json"),
+  databaseURL: "https://gupta-bansal-148011.firebaseio.com"
 });
 
 var password="gupta.bansal@1234"
@@ -43,7 +45,7 @@ app.get('/module.js', function(req, res){
 });
 app.get('/login/:pwd', function(req, res){
     var pass = req.params.pwd;
-  
+
     var rep;
     if(pass==password)
     {
