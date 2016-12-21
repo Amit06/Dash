@@ -1,29 +1,68 @@
 <html>
 
    <head>
-      <title>USER DETAILS</title>
-      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+     </head>
+      <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-cookies.js"></script>
       <script src = "module.js"></script>
       <script src = "control.js"></script>
+      <style>
+      .loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    position:relative;
+    left:45%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+      </style>
    </head>
-   <style>
-table, th , td {
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
-table tr:nth-child(odd) {
-  background-color: #f1f1f1;
-}
-table tr:nth-child(even) {
-  background-color: #ffffff;
-}
-</style>
+
    <body>
 
-      <div ng-app = "mainApp" ng-controller = "studentController">
-          <div><h5 style="color:red;">{{isAsk}}</h5></div>
-        <table >
+      <div ng-app = "mainApp" class="container" ng-controller = "studentController" ng-init="init()">
+
+          <div ng-if="!connected" class="row">
+            <h1 class="text-center"> Gupta Bansal Group </h1>
+            <div class="col-md-8">
+              <div class="form-group" style="margin-top:20%;margin-left:20%">
+                <label for="pwd">Enter Password:</label>
+                <input type="password" ng-model="user.pass" class="form-control" id="pwd">
+
+              </div>
+                <button class="btn btn-small btn-primary"ng-click="submit()" style="margin-left:20%">LOG IN</button>
+
+            <br>
+            <br>
+            <h5 style="color:red" >{{showError}} </h5>
+          </div>
+        </div>
+        <div ng-if="connected" >
+          <div class="row">
+
+            <button class="btn btn-small btn-danger" style="position:relative;top:5px;margin:20px;float:right" ng-click="logout()">LOGOUT</button>
+
+
+          </div>
+          <div class="row">
+            <div class=" loader" ng-show="isw8"></div>
+          </div>
+          <div class="table-responsive" ng-show="!isw8">
+
+        <table class="table table-striped table-bordered table-hover ">
+          <thead>
           <tr>
             <th>#</th>
             <th>Photo</th>
@@ -36,9 +75,10 @@ table tr:nth-child(even) {
             <th>Institution Pincode</th>
             <th>Operation</th>
           </tr>
+        </thead>
           <tr ng-repeat="x in students">
             <td>&nbsp{{$index+1}}&nbsp</td>
-            <td><img src="{{x.prov.image}}" alt="profile Pic"/></td>
+            <td><img class = "img-circle" src="{{x.prov.image}}" alt="profile Pic"/></td>
             <td>{{x.prov.name}}</td>
             <td>{{ x.prov.email }}</td>
             <td>{{ x.phone }}</td>
@@ -46,11 +86,19 @@ table tr:nth-child(even) {
             <td>{{ x.institute.name }}</td>
             <td>{{ x.institute.state }}</td>
             <td>{{ x.institute.pincode }}</td>
-            <td><button ng-click="check($index)">Check Last Sign In</button><br></td>
+            <td><button class="btn btn-small btn-info"  ng-click="check($index)">Check Last Sign In</button><br></td>
           </tr>
         </table>
+        <div id="note"  class = "alert alert-success" ng-show="ischeck">{{isAsk}}</div>
+
 
       </div>
+
+
+</div>
+      </div>
+
+
 
    </body>
 </html>

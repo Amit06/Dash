@@ -11,6 +11,8 @@ admin.initializeApp({
   databaseURL: "https://bookapp-146604.firebaseio.com/"
 });
 
+var password="777"
+
 var db=admin.app().database().ref();
 var y={};
 db.on("value", function(snapshot) {
@@ -39,7 +41,19 @@ app.get('/user/:id', function(req, res){
 app.get('/module.js', function(req, res){
     res.sendFile("module.js");
 });
-
+app.get('/login/:pwd', function(req, res){
+    var pass = req.params.pwd;
+    console.log(pass);
+    var rep;
+    if(pass==password)
+    {
+      rep='true';
+    }
+    else {
+      rep='false';
+    }
+    res.send(rep);
+});
 app.get('/control.js', function(req, res){
     res.sendFile("control.js");
 });
