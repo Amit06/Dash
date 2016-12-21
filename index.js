@@ -9,7 +9,7 @@ app.use(cors());
 var admin = require("firebase-admin");
 
 admin.initializeApp({
-  credential: admin.credential.cert("path/to/serviceAccountKey.json"),
+  credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://gupta-bansal-148011.firebaseio.com"
 });
 
