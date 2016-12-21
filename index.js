@@ -11,7 +11,7 @@ admin.initializeApp({
   databaseURL: "https://bookapp-146604.firebaseio.com/"
 });
 
-var password="777"
+var password="gupta.bansal@1234"
 
 var db=admin.app().database().ref();
 var y={};
